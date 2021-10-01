@@ -15,16 +15,21 @@
  * limitations under the License.
  */
 
-package org.apache.shardingsphere.sql.parser.sql.dialect.statement.mysql.dal;
+package org.apache.shardingsphere.sql.parser.sql.common.statement.dal;
 
+import lombok.Getter;
 import lombok.ToString;
-import org.apache.shardingsphere.sql.parser.sql.common.statement.dal.ChecksumTableStatement;
-import org.apache.shardingsphere.sql.parser.sql.common.statement.dal.DALStatement;
-import org.apache.shardingsphere.sql.parser.sql.dialect.statement.mysql.MySQLStatement;
+import org.apache.shardingsphere.sql.parser.sql.common.segment.generic.table.SimpleTableSegment;
+import org.apache.shardingsphere.sql.parser.sql.common.segment.generic.table.TableSegment;
+import org.apache.shardingsphere.sql.parser.sql.common.statement.AbstractSQLStatement;
+import org.apache.shardingsphere.sql.parser.sql.common.statement.ddl.DDLStatement;
 
-/**
- * MySQL checksum table statement.
- */
+import java.util.Collection;
+import java.util.LinkedList;
+
+@Getter
 @ToString
-public final class MySQLChecksumTableStatement extends ChecksumTableStatement implements DALStatement, MySQLStatement {
+public class ChecksumTableStatement extends AbstractSQLStatement implements DDLStatement {
+
+    private Collection<SimpleTableSegment> tableSegmentList = new LinkedList<>();
 }

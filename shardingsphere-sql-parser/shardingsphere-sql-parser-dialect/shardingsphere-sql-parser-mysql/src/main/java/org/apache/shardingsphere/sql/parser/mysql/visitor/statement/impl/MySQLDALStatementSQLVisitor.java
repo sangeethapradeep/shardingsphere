@@ -82,6 +82,7 @@ import org.apache.shardingsphere.sql.parser.sql.common.segment.dml.expr.Expressi
 import org.apache.shardingsphere.sql.parser.sql.common.segment.dml.predicate.WhereSegment;
 import org.apache.shardingsphere.sql.parser.sql.common.segment.generic.SchemaSegment;
 import org.apache.shardingsphere.sql.parser.sql.common.segment.generic.table.SimpleTableSegment;
+import org.apache.shardingsphere.sql.parser.sql.common.segment.generic.table.TableSegment;
 import org.apache.shardingsphere.sql.parser.sql.common.statement.SQLStatement;
 import org.apache.shardingsphere.sql.parser.sql.common.value.collection.CollectionValue;
 import org.apache.shardingsphere.sql.parser.sql.common.value.identifier.IdentifierValue;
@@ -232,7 +233,9 @@ public final class MySQLDALStatementSQLVisitor extends MySQLStatementSQLVisitor 
     
     @Override
     public ASTNode visitChecksumTable(final ChecksumTableContext ctx) {
-        return new MySQLChecksumTableStatement();
+        MySQLChecksumTableStatement result = new MySQLChecksumTableStatement();
+        result.getTableSegmentList().addAll(((CollectionValue<SimpleTableSegment>) visit(ctx.tableList())).getValue());
+        return null;
     }
     
     @Override
